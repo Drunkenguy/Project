@@ -1,7 +1,7 @@
 # Recieve-input
 #!/bin/bash
 
-echo -n "Type your message here:"
+echo -n "Enter Something:"
 read something
 
-echo "You typed: $something"
+echo "You Entered: $something"
