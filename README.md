@@ -17,7 +17,7 @@ elif [ $something = 'firefox' ]; then
 	
 else
 
-	echo "Try again"; then 
+	echo "Try again"; (ok button) then 
 	
 	echo -n "Enter what you need:" read something
 	
