@@ -2,28 +2,31 @@
 #!/bin/bash
 
 echo -n "Enter what you need:" read something
-
 if [ $something = 'update' ]; then
-
 	exec "terminal yay -Syyu"
-	
 elif [ $something = 'qq' ]; then
-
 	exit
-	
 elif [ $something = 'firefox' ]; then
-
 	exec "firefox"
-	
 else
-
 	echo "Try again"; (ok button) then 
-	
 	echo -n "Enter what you need:" read something
-	
 fi
 
 echo "You Entered: $something" then when it ends line 3
+
+
+#Ideas
+$something= 'create directory at home'
+
+create
+
+directory
+
+at * = cd /*
+
+open a webpage
+
 
 
 
@@ -35,4 +38,9 @@ echo "You Entered: $something" then when it ends line 3
 
 #figure how to make it look cool
 
+#ok button
+
 #exit buttons
+
+
+ 
