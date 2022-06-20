@@ -4,12 +4,19 @@
 echo -n "Enter what you need:" read something
 
 if [ $something = 'update' ]; then
+
 	exec "terminal yay -Syyu"
+	
 elif [ $something = 'qq' ]; then
+
 	exit
+	
 elif [ $something = 'firefox' ]; then
+
 	exec "firefox"
+	
 else
+
 	echo "Try again"; then 
 	
 fi
