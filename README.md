@@ -2,14 +2,21 @@
 #!/bin/bash
 
 echo -n "Enter what you need:" read something
+
 if [ $something = 'update' ]; then
-	exec "terminal yay -Syyu"
+
+	exec "terminal sudo pacman -Syyu"
+	
 elif [ $something = 'qq' ]; then
+
 	exit
+	
 elif [ $something = 'firefox' ]; then
+
 	exec "firefox"
 else
 	echo "Try again"; (ok button) then 
+	
 	echo -n "Enter what you need:" read something
 fi
 
