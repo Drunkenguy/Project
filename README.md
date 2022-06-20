@@ -19,6 +19,8 @@ else
 
 	echo "Try again"; then 
 	
+	echo -n "Enter what you need:" read something
+	
 fi
 
 echo "You Entered: $something" then when it ends line 3
