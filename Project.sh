@@ -1,4 +1,4 @@
-#Idea: A small simple window to input words and for it to run commands. A noob so idk what im doing. it'll some time to finish hobby.
+#Idea: A small simple window to input words and for it to run commands. A noob so idk what im doing. it'll some time to finish this.
 
 #!/bin/bash
 
