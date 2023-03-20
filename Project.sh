@@ -183,5 +183,4 @@ yad --title="Error"
 esac
 fi
 
-
-To make this code look cool, you can customize the yad window by adding a background image, changing the font, or adjusting the colors. You can also add more buttons to the yad window, such as a Help button, a History button, or a Settings button. Finally, you can add more commands to the script and improve the suggestions based on the user's input.
+ History button
