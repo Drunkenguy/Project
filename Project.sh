@@ -37,7 +37,7 @@ else
                         
                         
 
-        # Check wCheck hich option the user selected and execute the appropriate action
+        # Check which option the user selected and execute the appropriate action
         if [ $? -if [ $? -eq 0 ]; then
         # Extract settings from input string
             IFS=':' read -r fonts colors placeholder <<< "$settings"
