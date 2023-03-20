@@ -119,7 +119,8 @@ yad --title="Error"
 --text="Invalid command: $user_command_text"
 ;;
 esac
-fi# Show a color selection dialog and change the colors in the yad window
+fi
+# Show a color selection dialog and change the colors in the yad window
                 selected_colors=$(yad --color-selection \
                     --title="Select Colors")
                 font_color=$(echo "$selected_colors" | awk -F':' '{print $1}')
