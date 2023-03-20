@@ -12,50 +12,51 @@ if [ $? -eq 2 ]; then
     # Minimize the yad window
     xdotool search --name "Run Command" windowminimize
 else
+    # Check if the user clicked the OK button or not
+    if [ $? -eq 0 ]; then
+        # Get the command entered by the user
+        user_command=$(echo "$command" | awk -F':' '{print $NF}')
 
-# Check if the user clicked the OK button or not
-if [ $? -eq 0 ]; then
-    # Get the command entered by the user
-    user_command=$(echo "$command" | awk -F':' '{print $NF}')
+        # Check the command entered by the user and execute the appropriate action
+        case "$user_command" in
+            update)
+                exec xterm -e "sudo pacman -Syyu"
+                ;;
+            firefox)
+                exec firefox
+                ;;
+            settings)
+                while true; do
+                    # Show a form with three options: Change Fonts, Change Colors, and Placeholder
+                    settings=$(yad --form --title="Settings" \
+                        --text="Choose an option:" \
+                        --field="Change Fonts:CHK" \
+                        --field="Change Colors:CHK" \
+                        --field="Placeholder:CHK" \
+                        --button="OK:0" --button="Cancel:1")
+                        
+                        
 
-    # Check the command entered by the user and execute the appropriate action
-    
-case "$user_command" in
-    update)
-        exec xterm -e "sudo pacman -Syyu"
-        ;;
-    firefox)
-        exec firefox
-        ;;
-    settings)
-        # Show a form with three options: Change Fonts, Change Colors, and Placeholder
-        settings=$(yad --form --title="Settings" \
-            --text="Choose an option:" \
-            --field="Change Fonts:CHK" \
-            --field="Change Colors:CHK" \
-            --field="Placeholder:CHK" \
-            --button="OK:0" --button="Cancel:1")
-
-        # Check which option the user selected and execute the appropriate action
-        if [ $? -eq 0 ]; then
-            fonts=$(echo "$settings" | awk -F':' '{print $1}')
-            colors=$(echo "$settings" | awk -F':' '{print $2}')
-            placeholder=$(echo "$settings" | awk -F':' '{print $3}')
+        # Check wCheck hich option the user selected and execute the appropriate action
+        if [ $? -if [ $? -eq 0 ]; then
+        # Extract settings from input string
+            IFS=':' read -r fonts colors placeholder <<< "$settings"
             if [ "$fonts" = "TRUE" ]; then
-                # Show a dialog to select a font and change the font in the yad window
-                selected_font=$(yad --font \
-                    --title="Select a Font" \
-                    --fontname="Monospace 12")
-                yad --form --title="Settings" \
-                    --text="Choose an option:" \
-                    --field="Change Fonts:CHK" \
-                    --field="Change Colors:CHK" \
-                    --field="Placeholder:CHK" \
-                    --font="$selected_font" \
-                    --button="OK:0" --button="Cancel:1"
-            elif [ "$colors" = "TRUE" ]; then
+    # Show a dialog to select a font and change the font in the yad window
+    selected_font=$(yad --font \
+        --title="Select a Font" \
+        --fontname="Monospace 12")
+    yad --form --title="Settings" \
+        --text="Choose an option:" \
+        --field="Change Fonts:CHK" \
+        --field="Change Colors:CHK" \
+        --field="Placeholder:CHK" \
+        --font="$selected_font" \
+        --button="OK:0" --button="Cancel:1"
+      
+      
+      
                 # Show a color selection dialog and change the colors in the yad window
-# Show a color selection dialog and change the colors in the yad window
                 selected_colors=$(yad --color-selection \
                     --title="Select Colors")
                 font_color=$(echo "$selected_colors" | awk -F':' '{print $1}')
@@ -68,7 +69,8 @@ case "$user_command" in
                     --field="Placeholder:CHK" \
                     --fontcolor="$font_color" \
                     --backcolor="$background_color" \
-                    --forecolor="$window_color" \
+                    --forecolor
+                    ="$window_color" \
                     --button="OK:0" --button="Cancel:1"
 elif [ "$placeholder" = "TRUE" ]; then
 # Placeholder for future feature
