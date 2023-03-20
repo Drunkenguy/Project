@@ -1,52 +1,41 @@
-#Idea: A small simple window to input words and for it to run commands. A noob so idk what im doing. it'll some time to finish this.
-
 #!/bin/bash
 
-echo -n "Enter what you need:" read something
+# Create the yad window
+command=$(yad --form --title="Run Command" \
+    --text="Enter a command:" \
+    --field="Command:" \
+    --button="OK:0" --button="Exit:1")
 
-if [ $something = 'update' ]; then
+# Check if the user clicked the OK button or not
+if [ $? -eq 0 ]; then
+    # Get the command entered by the user
+    user_command=$(echo "$command" | awk -F':' '{print $NF}')
 
-	exec "terminal sudo pacman -Syyu"
-	
-elif [ $something = 'qq' ]; then
+    # Check the command entered by the user and execute the appropriate action
+    case "$user_command" in
+        update)
+            exec xterm -e "sudo pacman -Syyu"
+            ;;
+        firefox)
+            exec firefox
+            ;;
+        *)
+            # Show a suggestion for the command based on the user's input
+            suggestion=$(echo "$user_command" | grep -oP '^\w+' | sed -n 's/^/echo -n "/p; s/ /"; then "/; s/$/"; fi"/')
+            eval "$suggestion"
 
-	exit
-	
-elif [ $something = 'firefox' ]; then
-
-	exec "firefox"
-else
-	echo "Try again"; then 
-	
-	echo -n "Enter what you need:" read something
+            # Ask the user to confirm the suggestion or enter a new command
+            confirm=$(yad --title="Confirm Command" \
+                --text="Did you mean to run this command?" \
+                --image="dialog-question" \
+                --button="Yes:0" --button="No:1")
+            if [ $? -eq 0 ]; then
+                # Execute the suggested command
+                exec xterm -e "$suggestion"
+            else
+                # Ask the user to enter a new command
+                exec $0
+            fi
+            ;;
+    esac
 fi
-
-echo "You Entered: $something" then when it ends/or not go to line 3
-
-
-#Ideas
-$something= 'create directory at home'
-(create; directory; at * = cd /*;)
-#open a webpage
-
-#add a elif line by typing add command 
-
-
-
-
-#if $something is different than (needs a list I think) then echo "Try again" loop line 3
-
-#add a button with all the commands probably?
-
-#history
-
-#if condition then statement
-
-#figure how to create a window to input $something
-https://github.com/v1cont/yad/
-
-#figure how to make it look cool
-
-#ok button
-
-#exit buttons
